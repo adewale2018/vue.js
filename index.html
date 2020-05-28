@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css">
+  <title>Learning Vue.js</title>
+</head>
+
+<body>
+  <div id="root">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="text-center title">Learning Vue.js</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header" v-bind:class='formSubmitClass'>
+              {{ event.eventDate}}
+            </div>
+            <div class="card-block">
+              <div class="card-title">
+                <h4 class="text-center" v-bind:style="appStyles">{{ event.eventTitle.toUpperCase()}}</h4>
+              </div>
+              <p class="card-text">{{event.eventDescription}}</p>
+              <p class="card-text" v-html="event.signUpText"></p>
+              <form class="form-inline" v-on:submit.prevent="handleSubmit">
+                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Emmanuel Langat"
+                  v-model="nameText" />
+                <input type="submit" class="btn btn-primary" v-bind:class='formSubmitClass'>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 v-bind:style="appStyles">Attending({{ guestName.length }})</h4>
+            </div>
+            <div class="card-block">
+              <div v-if="guestName.length > 0">
+                <div v-for="name in guestName">
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      {{ name }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div v-else>
+                No names added yet to the list...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <script src="/app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

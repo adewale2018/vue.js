@@ -1,0 +1,10 @@
+.title {
+  text-align: center;
+  color: steelblue;
+}
+.submitted {
+  background-color: azure;
+  color: green;
+  letter-spacing: .1rem;
+  font-weight: 900;
+}
