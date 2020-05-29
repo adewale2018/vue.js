@@ -10,13 +10,24 @@
 </head>
 
 <body>
-  <div id="root">
-    <div class="container">
+  <div class="container">
+    <div id="navigation">
       <div class="row">
         <div class="col-sm-12">
-          <h1 class="text-center title">Learning Vue.js</h1>
+          <h1 class="text-center title">{{ appTitle }}</h1>
+          <hr>
         </div>
+        <div v-for="navLink in navLinks" :key='navLink.id'>
+          <ul class="nav">
+            <li class="nav-item"><a class="nav-link active" :href="navLink.url">{{ navLink.name}}</a></li>
+          </ul>
+          
+        </div>
+        
       </div>
+      <button @click="capacityChanged">Change Capacity</button>
+    </div>
+    <div id="root">
       <div class="row">
         <div class="col-sm-12">
           <div class="card">
@@ -25,7 +36,7 @@
             </div>
             <div class="card-block">
               <div class="card-title">
-                <h4 class="text-center" v-bind:style="appStyles">{{ event.eventTitle.toUpperCase()}}</h4>
+                <h4 class="text-center" v-bind:style="appStyles">{{ event.eventTitle | toUpper }}</h4>
               </div>
               <p class="card-text">{{event.eventDescription}}</p>
               <p class="card-text" v-html="event.signUpText"></p>
@@ -42,14 +53,16 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header">
-              <h4 v-bind:style="appStyles">Attending({{ guestName.length }})</h4>
+              <h4 v-bind:style="appStyles">Attending({{ guestName.length }} / {{ eventCapacity}})</h4>
+              <br>
+              <progress :style="{width: eventCapacityPercentage + '%'}"></progress>
             </div>
             <div class="card-block">
               <div v-if="guestName.length > 0">
-                <div v-for="name in guestName">
+                <div v-for="name in sortName">
                   <ul class="list-group">
                     <li class="list-group-item">
-                      {{ name }}
+                      {{ name | formatName }}
                     </li>
                   </ul>
                 </div>
