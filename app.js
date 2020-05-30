@@ -2,7 +2,7 @@ let vm1 = new Vue({
   el: "#root",
   data: {
     event: {
-      eventTitle: "A Guest List App",
+      eventTitle: "Summer Festival!",
       eventDate: "25th May, 2020",
       eventDescription:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo similique rerum, blanditiis sit eveniet obcaecati quos quae a vel corporis.",
@@ -35,6 +35,10 @@ let vm1 = new Vue({
           (this.guestName.length * 100) / this.eventCapacity;
       }
     },
+    changeName: function () {
+      this.$refs.name.hidden = true;
+      console.log(this.$refs);
+    },
   },
   computed: {
     sortName: function () {
@@ -48,6 +52,30 @@ let vm1 = new Vue({
     formatName: function (val) {
       return val.slice(0, 1).toUpperCase() + val.slice(1).toLowerCase();
     },
+  },
+  beforeCreate: function () {
+    console.log("beforeCreate");
+  },
+  created: function () {
+    console.log("created");
+  },
+  beforeMount: function () {
+    console.log("beforeMount");
+  },
+  mounted: function () {
+    console.log("mounted");
+  },
+  beforeUpdate: function () {
+    console.log("beforeUpdate");
+  },
+  updated: function () {
+    console.log("updated");
+  },
+  beforeDestroy: function () {
+    console.log("beforeDestroy");
+  },
+  destroyed: function () {
+    console.log("destroyed");
   },
 });
 
@@ -68,3 +96,12 @@ let vm2 = new Vue({
     },
   },
 });
+
+// let vm3 = new Vue({
+//   template: "<div class='col-sm-12 text-center'>" +
+//               "<h2>New Title for VM3</h2>" +
+//             "</div>"
+// });
+
+// vm3.$mount("#navigation");
+// console.log(vm1.$el);
